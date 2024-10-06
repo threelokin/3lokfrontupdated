@@ -3,6 +3,7 @@ import { FaShare } from "react-icons/fa";
 import html2canvas from 'html2canvas';
 import ShareTemplate from '../utils/ShareTemplate';
 import { createRoot } from 'react-dom/client'; // Import createRoot
+import ReactGA from "react-ga4"
 
 const NewsArticle = React.memo(({ article, fallbackImage, formatDate, truncateDescription, handleShare, language }) => {
   const invalidImages = [
@@ -45,6 +46,16 @@ const NewsArticle = React.memo(({ article, fallbackImage, formatDate, truncateDe
     container.style.position = 'relative';
     container.style.display = 'none'; // Initially hide the container
 
+    ReactGA.event({
+
+        category: 'Share Button',
+
+        action: 'Click on "Share" button',
+
+        label: 'Button'
+
+    });
+
     // Use createRoot to render the ShareTemplate component
     const root = createRoot(container);
     root.render(<ShareTemplate article={article} fallbackImage={fallbackImage} truncateDescription={truncateDescription} language={language} />);
@@ -82,7 +93,7 @@ const NewsArticle = React.memo(({ article, fallbackImage, formatDate, truncateDe
         }));
       }
     } catch (error) {
-     
+
     } finally {
       // Clean up the container
       root.unmount();
@@ -122,7 +133,19 @@ const NewsArticle = React.memo(({ article, fallbackImage, formatDate, truncateDe
         <p className="text-lg text-gray-800 mt-1 overflow-hidden leading-8" style={{ userSelect: 'none' }}>{truncateDescription(trimmedDescription)}</p>
       </div>
       <div className='flex justify-between p-2'>
-        <a href={article.link} target="_blank" rel="noopener noreferrer" className="left-1 py-2 text-red-500 animate-pulse">Read More</a>
+        <a href={article.link} target="_blank" rel="noopener noreferrer" className="left-1 py-2 text-red-500 animate-pulse"   onClick={() => {
+
+ReactGA.event({
+
+    category: 'Read Morw',
+
+    action: 'Click on "Read More" button',
+
+    label: 'Button'
+
+});
+
+}}>Read More</a>
         <button
           onClick={handleShareClick}
           className="mt-1 right-4 p-2 text-blue-700 text-lg"
