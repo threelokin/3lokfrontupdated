@@ -12,12 +12,17 @@ import { NewsProvider } from './context/NewsContext';
 import AboutPage from './pages/About';
 import NewsDetailPage from './components/NewsDetailPage';
 import CommentsPage from './components/CommentsPage';
+import ReactGA from 'react-ga4';
+
+
 
 
 const App = () => {
   const [language, setLanguage] = useState(localStorage.getItem('language') || '');
   const [navVisible, setNavVisible] = useState(true);
   const [lastScrollTop, setLastScrollTop] = useState(0);
+
+  ReactGA.initialize('G-P7RJWD9FTT');
 
   useEffect(() => {
     if (!language) {
