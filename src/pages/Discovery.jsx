@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import ReactGA from "react-ga4"
 
 const Discovery = () => {
   const [telanganaNews, setTelanganaNews] = useState([]);
@@ -22,13 +23,18 @@ const Discovery = () => {
       }
     };
 
+    ReactGA.send({
+        hitType: "pageview",
+        page: "/discovery",
+        title: "AI",
+        });
     const fetchEnglishNews = async () => {
       try {
         const response = await fetch('https://backendpoints.vercel.app/latestnewsenglish');
         const data = await response.json();
         setEnglishNews(data);
       } catch (error) {
-       
+
       } finally {
         setLoading(false);
       }
