@@ -13,7 +13,7 @@ const NewsDetailPage = () => {
   useEffect(() => {
     const fetchNewsDetail = async () => {
       try {
-        const response = await fetch('https://streamback.vercel.app/scrape', {
+        const response = await fetch('https://streamback.vercel.app/ai', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
