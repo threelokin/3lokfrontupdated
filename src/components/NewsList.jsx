@@ -181,7 +181,7 @@ const NewsList = ({ language, onScroll = () => {} }) => {
   }, [handleScroll]);
 
   return (
-    <div ref={containerRef} className="h-screen overflow-y-scroll" style={{ scrollSnapType: 'y mandatory' }}>
+    <div ref={containerRef} className="h-screen overflow-y-scroll pt-14" >
       {news.length === 0 ? (
         <Skeleton />
       ) : (
