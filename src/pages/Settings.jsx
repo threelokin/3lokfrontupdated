@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import profileImage from '../assets/profile.jpg'; // Replace with your profile image path
 import { FaEdit } from 'react-icons/fa'; // Import the edit icon
+import ReactGA from "react-ga4"
 
 const generateRandomGuestId = (length = 8) => {
   const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -29,6 +30,12 @@ const Settings = () => {
       setEditedProfile(newGuestId);
     }
   }, []);
+
+  ReactGA.send({
+    hitType: "pageview",
+    page: "/settings",
+    title: "Settings",
+    });
 
   const handleLanguageChange = (e) => {
     const selectedLanguage = e.target.value;
@@ -122,3 +129,4 @@ const Settings = () => {
 };
 
 export default Settings;
+
