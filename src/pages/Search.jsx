@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import ReactGA from "react-ga4"
 
 const categories = [
    "business", "crime",  "entertainment",
@@ -42,6 +43,12 @@ const Search = () => {
     setSuggestions(data[1].slice(0, 5)); // Limit suggestions to top 5
   };
 
+
+  ReactGA.send({
+    hitType: "pageview",
+    page: "/search",
+    title: "Search",
+    });
   const handleInputChange = (e) => {
     const query = e.target.value;
     setSearchTerm(query);
@@ -64,6 +71,16 @@ const Search = () => {
     setSearchTerm('');
     setSuggestions([]);
     navigate('/search-results', { state: { category, languageCode, backgroundImage: categoryImages[category] } });
+
+    ReactGA.event({
+
+        category: 'Categories Button ',
+
+        action: 'Click on "Categories" button',
+
+        label: 'Button'
+
+    });
   };
 
   const handleKeyPress = (e) => {
